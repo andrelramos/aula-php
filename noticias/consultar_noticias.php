@@ -3,6 +3,8 @@
 require_once('../conexao.php');
 header('Content-Type: text/html; charset=utf-8; Content-Type: application/json');
 
+session_start();
+
 $noticias = [];
 
 try {
