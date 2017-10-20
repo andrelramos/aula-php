@@ -13,16 +13,17 @@ $( document ).ready(function() {
         
         var texto_artigo = quill.container.firstChild.innerHTML;
 
-        if(change.length() == 0 || !$('#titulo').val()) {
+        if(change.length() == 0 || !$('#titulo').val() || !$('#imagem').val()) {
             swal(
                 'Ops!',
-                'Não é possível enviar um artigo com texto ou título em branco!',
+                'Não é possível enviar um artigo com um campo em branco!',
                 'error'
               )
         } else {
             $.post('cadastrar_noticia.php', { 
                 titulo: $('#titulo').val(),
                 texto: texto_artigo,
+                imagem: $('#imagem').val()
             }, function(data, status){
                 if(status == 'success') {
                     swal(

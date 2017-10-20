@@ -7,11 +7,12 @@ session_start();
 
 $titulo = $_POST["titulo"];
 $texto = $_POST["texto"];
+$img = $_POST["imagem"];
 
-if($titulo == "" or $texto == "") {
+if($titulo == "" or $texto == "" or $img == "") {
   var_dump(http_response_code(400));
   $result = [
-    "result" => "Ops! O Título ou o Texto não pode estar em branco."
+    "result" => "Ops! Existe campos em branco."
   ];
 } elseif(!isset($_SESSION['username'])) {
   var_dump(http_response_code(400));
@@ -21,8 +22,8 @@ if($titulo == "" or $texto == "") {
 } else {
   // prepare and bind
   try {
-    $stmt = $db->prepare("INSERT INTO noticias (titulo, texto, username) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $titulo, $texto, $_SESSION['username']);
+    $stmt = $db->prepare("INSERT INTO noticias (titulo, texto, img, username) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $titulo, $texto, $img, $_SESSION['username']);
     $stmt->execute();
     $stmt->close();
 

@@ -7,13 +7,19 @@ header('Content-Type: text/html; charset=utf-8; Content-Type: application/json')
 
 $noticias = [];
 
+
 try {
-    $sql = "SELECT id, titulo, texto FROM noticias";
+    if(!isset($_GET['id'])) {
+      $sql = "SELECT id, titulo, texto, img FROM noticias";
+    } else {
+      $sql = "SELECT id, titulo, texto, img FROM noticias WHERE id=".$_GET['id'];
+    }
     $query = $db->query($sql);
     while ($dados = $query->fetch_assoc()) {
       $noticias[$dados['id']] = [
         "titulo" => $dados['titulo'],
         "texto" => $dados['texto'],
+        "img" => $dados['img']
       ];
     }
 }  catch (Exception $e)  {

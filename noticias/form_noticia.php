@@ -63,9 +63,13 @@ if (!isset($_SESSION['username'])) {
 
 </head>
 <body>
-  
+
+<a href="noticias.html"><img src="../img/344330-200.png" width="80px"/></a>
+
 <div id="standalone-container">
   <input class="form-control" placeholder="Título do artigo..." id="titulo"></input>
+  <br>
+  <input class="form-control" placeholder="Url de uma imagem para seu artigo" id="imagem"></input>
   <br>
   <div id="toolbar-container">
     <span class="ql-formats">
